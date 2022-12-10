@@ -1,0 +1,15 @@
+const createSlice = require('@reduxjs/toolkit').createSlice
+const createAsyncThunk = require ('@reduxjs/toolkit').createAsyncThunk
+const axios =require ('axios')
+const { response } = require('express')
+
+const initialState = {
+    loading: false,
+    user: [],
+    error: ''
+}
+//genrates pending, fulfilled, and rejected action types 
+const fetchUser = createAsyncThunk('user/fetchUsers',()=>{
+    axios.get('https:abc.com')
+    .then((response)=>response.data.map((user)=>user.id))
+})      
